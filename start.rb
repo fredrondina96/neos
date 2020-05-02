@@ -8,11 +8,8 @@ print ">>"
 date = gets.chomp
 asteroid_details = NearEarthObjects.find_neos_by_date(date)
 
-#all of this should be moved
-# ________________________________________________
+
 asteroid_list = asteroid_details[:asteroid_list]
-total_number_of_asteroids = asteroid_details[:total_number_of_asteroids]
-largest_asteroid = asteroid_details[:biggest_asteroid]
 
 column_labels = { name: "Name", diameter: "Diameter", miss_distance: "Missed The Earth By:" }
 column_data = column_labels.each_with_object({}) do |(col, label), hash|
@@ -36,8 +33,8 @@ end
 
 formated_date = DateTime.parse(date).strftime("%A %b %d, %Y")
 puts "______________________________________________________________________________"
-puts "On #{formated_date}, there were #{total_number_of_asteroids} objects that almost collided with the earth."
-puts "The largest of these was #{largest_asteroid} ft. in diameter."
+puts "On #{formated_date}, there were #{asteroid_details[:total_number_of_asteroids]} objects that almost collided with the earth."
+puts "The largest of these was #{asteroid_details[:biggest_asteroid]} ft. in diameter."
 puts "\nHere is a list of objects with details:"
 puts divider
 puts header

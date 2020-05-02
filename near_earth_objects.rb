@@ -11,9 +11,8 @@ class NearEarthObjects
       url: 'https://api.nasa.gov',
       params: { start_date: date, api_key: ENV['nasa_api_key']}
     )
-    asteroids_list_data = conn.get('/neo/rest/v1/feed')
 
-    parsed_asteroids_data = JSON.parse(asteroids_list_data.body, symbolize_names: true)[:near_earth_objects][:"#{date}"]
+    parsed_asteroids_data = JSON.parse(conn.get('/neo/rest/v1/feed').body, symbolize_names: true)[:near_earth_objects][:"#{date}"]
 
     largest_asteroid_diameter = parsed_asteroids_data.map do |asteroid|
       # binding.pry
